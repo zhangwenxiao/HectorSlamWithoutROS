@@ -33,7 +33,8 @@
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h>
-
+#include <cv.h>
+#include <highgui.h>
 
 int main(int argc, char **argv)
 {
@@ -172,8 +173,13 @@ int main(int argc, char **argv)
         hokuyoaist::SensorInfo info;
         laser.get_sensor_info(info);
         std::cout << info.as_string();
-        //while(1)
-        //{
+        
+        //add
+        IplImage* LaserImage = cvCreateImage(cvSize(1024, 1024), IPL_DEPTH_8U, 1);//new opencv image used for show laser points
+        cvNamedWindow("Laser", 1);
+
+        while(1)
+        {
         // Get range data
         hokuyoaist::ScanData data;
         if((first_step == -1 && last_step == -1) &&
@@ -234,8 +240,38 @@ int main(int argc, char **argv)
             }
         }
 
+        cvZero(LaserImage);
+        cvShowImage("Laser", LaserImage);
+        cvWaitKey(2);
+
         std::cout << "Measured data:\n";
         std::cout << data.as_string();
+
+        const int halfWidth = 512, halfHeight = 512;
+        unsigned char* pPixel = NULL;
+        int x, y;
+        double theta, rho;
+        size_t size = data.ranges_length();
+        cvCircle(LaserImage, cvPoint(halfWidth, halfHeight), 5, 255, -1, 8, 0);
+
+        for(int i = 0; i < size; i++)
+        {
+                theta = -2.35619 + 0.00436332 * i;
+                rho = *(data.ranges() + i);
+                if(rho <= 20)
+                        continue;
+                x = (int)(rho * cos(theta) / 10) + halfWidth;
+                y = (int)(rho * sin(theta) / 10) + halfHeight;
+                if(x >= 0 && x < 1024 && y>=0 && y< 1024)
+                {
+                        pPixel = (unsigned char*)LaserImage -> imageData + y * LaserImage -> widthStep + x;
+                        *pPixel = 255;
+                }
+        }
+
+        cvShowImage("Laser", LaserImage);
+        cvWaitKey(2);
+
 /*
         std::cout << "data_show: " << std::endl;
         unsigned int size = data.ranges_length();
@@ -244,7 +280,7 @@ int main(int argc, char **argv)
             std::cout << *(data.ranges() + i) << std::endl;
         }
         */
-    //}//while(1)
+    }//while(1)
         // Close the laser
         laser.close();
     }

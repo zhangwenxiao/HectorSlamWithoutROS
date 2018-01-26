@@ -6,7 +6,7 @@
 },
 {
   "directory": "/home/zwx/mycode/hokuyoaist/build/examples",
-  "command": "/usr/bin/c++   -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2    -o CMakeFiles/hokuyoaist_example.dir/example.cpp.o -c /home/zwx/mycode/hokuyoaist/examples/example.cpp",
+  "command": "/usr/bin/c++   -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2 -isystem /usr/local/include/opencv -isystem /usr/local/include    -o CMakeFiles/hokuyoaist_example.dir/example.cpp.o -c /home/zwx/mycode/hokuyoaist/examples/example.cpp",
   "file": "/home/zwx/mycode/hokuyoaist/examples/example.cpp"
 },
 {

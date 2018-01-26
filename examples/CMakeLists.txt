@@ -6,6 +6,10 @@ include_directories(${Flexiport_INCLUDE_DIRS})
 add_executable(${PROJECT_NAME_LOWER}_example example.cpp)
 target_link_libraries(${PROJECT_NAME_LOWER}_example
     ${PROJECT_NAME_LOWER})
+##add
+find_package(OpenCV REQUIRED)
+target_link_libraries(${PROJECT_NAME_LOWER}_example ${OpenCV_LIBS})
+##
 install(TARGETS ${PROJECT_NAME_LOWER}_example
     DESTINATION ${BIN_INSTALL_DIR}
     RUNTIME DESTINATION bin

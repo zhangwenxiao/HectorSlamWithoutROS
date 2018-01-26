@@ -13,6 +13,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "include"
   "/usr/local/include/flexiport-2"
+  "/usr/local/include/opencv"
+  "/usr/local/include"
   )
 
 # Targets to which this target links.
