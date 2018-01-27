@@ -65,6 +65,12 @@ cv.h
 -
 highgui.h
 -
+boost/thread/thread.hpp
+-
+boost/thread/mutex.hpp
+-
+boost/thread/condition.hpp
+-
 
 /usr/local/include/flexiport-2/flexiport/flexiport.h
 map

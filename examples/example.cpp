@@ -1,31 +1,3 @@
-/* HokuyoAIST
- *
- * Laser data read example.
- *
- * Copyright 2008-2011 Geoffrey Biggs geoffrey.biggs@aist.go.jp
- *     RT-Synthesis Research Group
- *     Intelligent Systems Research Institute,
- *     National Institute of Advanced Industrial Science and Technology (AIST),
- *     Japan
- *     All rights reserved.
- *
- * This file is part of HokuyoAIST.
- *
- * HokuyoAIST is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2.1 of the License,
- * or (at your option) any later version.
- *
- * HokuyoAIST is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with HokuyoAIST. If not, see
- * <http://www.gnu.org/licenses/>.
- */
-
 #include <flexiport/flexiport.h>
 #include <hokuyoaist/hokuyoaist.h>
 #include <hokuyoaist/hokuyo_errors.h>
@@ -35,16 +7,192 @@
 #include <unistd.h>
 #include <cv.h>
 #include <highgui.h>
+#include <boost/thread/thread.hpp>
+#include <boost/thread/mutex.hpp>
+#include <boost/thread/condition.hpp>
+
+hokuyoaist::Sensor laser; // Laser scanner object
+
+std::string port_options("type=serial,device=/dev/ttyACM0,timeout=1");
+double start_angle(0.0), end_angle(0.0);
+int first_step(-1), last_step(-1);
+int multiecho_mode(0);
+unsigned int speed(0), cluster_count(1);
+bool get_intensities(false), get_new(false), verbose(false);
+
+IplImage* LaserImage;
+
+typedef boost::mutex::scoped_lock scoped_lock;
+const int BUF_SIZE = 100;
+
+boost::mutex io_mutex;
+
+class buffer
+{
+public:
+        buffer(): p(0), c(0), full(0){}
+
+        void put(hokuyoaist::ScanData& data)
+        {
+                scoped_lock lock(mutex);
+                if(full == BUF_SIZE)
+                {
+                        {
+                                scoped_lock lock(io_mutex);
+                                std::cout << "Buffer is full. Waiting..." << std::endl;
+                        }
+                        while(full == BUF_SIZE)
+                        cond.wait(lock);
+                }
+                buf[p] = data;
+                p = (p + 1) % BUF_SIZE;
+                full++;
+                cond.notify_one();
+        }
+
+        hokuyoaist::ScanData get()
+        {
+                scoped_lock lk(mutex);
+                if(full == 0)
+                {
+                         {
+                                scoped_lock lock(io_mutex);
+                                std::cout << "Buffer is empty. Waiting..." << std::endl;
+                        }
+                        while(full == 0)
+                        cond.wait(lk);
+                }
+                hokuyoaist::ScanData result = buf[c];
+                c = (c + 1) % BUF_SIZE;
+                full--;
+                cond.notify_one();
+                return result;
+        }
+private:
+        boost::mutex mutex;
+        boost::condition cond;
+        unsigned int p, c, full;
+        hokuyoaist::ScanData buf[BUF_SIZE];
+};
+
+buffer buf;
+
+void laserDataWriter()
+{
+        while(1)
+        {
+                hokuyoaist::ScanData data;
+
+                if((first_step == -1 && last_step == -1) &&
+                    (start_angle == 0.0 && end_angle == 0.0))
+                {
+                    // Get all ranges
+                    if(get_new)
+                    {
+                        laser.get_new_ranges(data, -1, -1, cluster_count);
+                    }
+                    else if(get_intensities)
+                    {
+                        laser.get_new_ranges_intensities(data, -1, -1, cluster_count);
+                    }
+                    else
+                    {
+                        laser.get_ranges(data, -1, -1, cluster_count);
+                    }
+                }
+                else if(first_step != -1 || last_step != -1)
+                {
+                    
+                    // Get by step
+                    if(get_new)
+                    {
+                        laser.get_new_ranges(data, first_step, last_step,
+                                cluster_count);
+                    }
+                    else if(get_intensities)
+                    {
+                        laser.get_new_ranges_intensities(data, first_step, last_step,
+                                cluster_count);
+                    }
+                    else
+                    {
+                        laser.get_ranges(data, first_step, last_step, cluster_count);
+                    }
+                }
+                else
+                {
+                    
+                    // Get by angle
+                    if(get_new)
+                    {
+                        laser.get_new_ranges_by_angle(data, start_angle, end_angle,
+                                cluster_count);
+                    }
+                    else if(get_intensities)
+                    {
+                        laser.get_new_ranges_intensities_by_angle(data, start_angle,
+                                end_angle, cluster_count);
+                    }
+                    else
+                    {
+                        laser.get_ranges_by_angle(data, start_angle, end_angle,
+                                cluster_count);
+                    }
+                }
+
+                buf.put(data);
+        }
+}
+
+void laserDataReader()
+{
+        LaserImage = cvCreateImage(cvSize(1024, 1024), IPL_DEPTH_8U, 1);//new opencv image used for show laser points
+        cvNamedWindow("Laser", 1);
+
+        while(1)
+        {
+                hokuyoaist::ScanData data = buf.get();
+
+                std::cout << "reader: date get" << std::endl;
+
+                cvZero(LaserImage);
+
+                cvShowImage("Laser", LaserImage);
+                std::cout << "debug_high" << std::endl;
+                cvWaitKey(2);
+   
+                std::cout << "Measured data:\n";
+                std::cout << data.as_string();
+
+                const int halfWidth = 512, halfHeight = 512;
+                unsigned char* pPixel = NULL;
+                int x, y;
+                double theta, rho;
+                size_t size = data.ranges_length();
+                cvCircle(LaserImage, cvPoint(halfWidth, halfHeight), 5, 255, -1, 8, 0);
+
+                for(int i = 0; i < size; i++)
+                {
+                        theta = -2.35619 + 0.00436332 * i;
+                        rho = *(data.ranges() + i);
+                        if(rho <= 20)
+                                continue;
+                        x = (int)(rho * cos(theta) / 10) + halfWidth;
+                        y = (int)(rho * sin(theta) / 10) + halfHeight;
+                        if(x >= 0 && x < 1024 && y>=0 && y< 1024)
+                        {
+                                pPixel = (unsigned char*)LaserImage -> imageData + y * LaserImage -> widthStep + x;
+                                *pPixel = 255;
+                        }
+                }
+
+                cvShowImage("Laser", LaserImage);
+                cvWaitKey(2);
+        }       
+}
 
 int main(int argc, char **argv)
 {
-    std::string port_options("type=serial,device=/dev/ttyACM0,timeout=1");
-    double start_angle(0.0), end_angle(0.0);
-    int first_step(-1), last_step(-1);
-    int multiecho_mode(0);
-    unsigned int speed(0), cluster_count(1);
-    bool get_intensities(false), get_new(false), verbose(false);
-
 #if defined(WIN32)
     port_options = "type=serial,device=COM4,timeout=1";
 #else
@@ -114,7 +262,7 @@ int main(int argc, char **argv)
 
     try
     {
-        hokuyoaist::Sensor laser; // Laser scanner object
+        
         // Set the laser to verbose mode (so we see more information in the
         // console)
         if(verbose)
@@ -173,114 +321,13 @@ int main(int argc, char **argv)
         hokuyoaist::SensorInfo info;
         laser.get_sensor_info(info);
         std::cout << info.as_string();
-        
         //add
-        IplImage* LaserImage = cvCreateImage(cvSize(1024, 1024), IPL_DEPTH_8U, 1);//new opencv image used for show laser points
-        cvNamedWindow("Laser", 1);
 
-        while(1)
-        {
-        // Get range data
-        hokuyoaist::ScanData data;
-        if((first_step == -1 && last_step == -1) &&
-            (start_angle == 0.0 && end_angle == 0.0))
-        {
-            
-            // Get all ranges
-            if(get_new)
-            {
-                laser.get_new_ranges(data, -1, -1, cluster_count);
-            }
-            else if(get_intensities)
-            {
-                laser.get_new_ranges_intensities(data, -1, -1, cluster_count);
-            }
-            else
-            {
-                laser.get_ranges(data, -1, -1, cluster_count);
-            }
-        }
-        else if(first_step != -1 || last_step != -1)
-        {
-            
-            // Get by step
-            if(get_new)
-            {
-                laser.get_new_ranges(data, first_step, last_step,
-                        cluster_count);
-            }
-            else if(get_intensities)
-            {
-                laser.get_new_ranges_intensities(data, first_step, last_step,
-                        cluster_count);
-            }
-            else
-            {
-                laser.get_ranges(data, first_step, last_step, cluster_count);
-            }
-        }
-        else
-        {
-            
-            // Get by angle
-            if(get_new)
-            {
-                laser.get_new_ranges_by_angle(data, start_angle, end_angle,
-                        cluster_count);
-            }
-            else if(get_intensities)
-            {
-                laser.get_new_ranges_intensities_by_angle(data, start_angle,
-                        end_angle, cluster_count);
-            }
-            else
-            {
-                laser.get_ranges_by_angle(data, start_angle, end_angle,
-                        cluster_count);
-            }
-        }
+        boost::thread thrd1(&laserDataWriter);
+        boost::thread thrd2(&laserDataReader);
+        thrd1.join();
+        thrd2.join();
 
-        cvZero(LaserImage);
-        cvShowImage("Laser", LaserImage);
-        cvWaitKey(2);
-
-        std::cout << "Measured data:\n";
-        std::cout << data.as_string();
-
-        const int halfWidth = 512, halfHeight = 512;
-        unsigned char* pPixel = NULL;
-        int x, y;
-        double theta, rho;
-        size_t size = data.ranges_length();
-        cvCircle(LaserImage, cvPoint(halfWidth, halfHeight), 5, 255, -1, 8, 0);
-
-        for(int i = 0; i < size; i++)
-        {
-                theta = -2.35619 + 0.00436332 * i;
-                rho = *(data.ranges() + i);
-                if(rho <= 20)
-                        continue;
-                x = (int)(rho * cos(theta) / 10) + halfWidth;
-                y = (int)(rho * sin(theta) / 10) + halfHeight;
-                if(x >= 0 && x < 1024 && y>=0 && y< 1024)
-                {
-                        pPixel = (unsigned char*)LaserImage -> imageData + y * LaserImage -> widthStep + x;
-                        *pPixel = 255;
-                }
-        }
-
-        cvShowImage("Laser", LaserImage);
-        cvWaitKey(2);
-
-/*
-        std::cout << "data_show: " << std::endl;
-        unsigned int size = data.ranges_length();
-        for(unsigned int i = 0; i < size; i++)
-        {
-            std::cout << *(data.ranges() + i) << std::endl;
-        }
-        */
-    }//while(1)
         // Close the laser
         laser.close();
     }

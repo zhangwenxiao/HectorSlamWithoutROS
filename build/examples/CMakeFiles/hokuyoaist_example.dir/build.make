@@ -99,6 +99,11 @@ examples/hokuyoaist_example: /usr/local/lib/libopencv_shape.so.3.1.0
 examples/hokuyoaist_example: /usr/local/lib/libopencv_photo.so.3.1.0
 examples/hokuyoaist_example: /usr/local/lib/libopencv_objdetect.so.3.1.0
 examples/hokuyoaist_example: /usr/local/lib/libopencv_calib3d.so.3.1.0
+examples/hokuyoaist_example: /usr/lib/x86_64-linux-gnu/libboost_system.so
+examples/hokuyoaist_example: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+examples/hokuyoaist_example: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+examples/hokuyoaist_example: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+examples/hokuyoaist_example: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 examples/hokuyoaist_example: /usr/local/lib/libflexiport.so
 examples/hokuyoaist_example: /usr/local/lib/libopencv_features2d.so.3.1.0
 examples/hokuyoaist_example: /usr/local/lib/libopencv_ml.so.3.1.0
