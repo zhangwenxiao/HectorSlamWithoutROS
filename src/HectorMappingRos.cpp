@@ -82,6 +82,7 @@ bool HectorMappingRos::rosLaserScanToDataContainer(const hokuyoaist::ScanData& s
 void HectorMappingRos::getMap(std::vector<unsigned char>& map)
 {
   const hectorslam::GridMap& gridMap = slamProcessor->getGridMap(0);
+  MapLockerInterface* mapMutex = slamProcessor->getMapMutex(0);
 
   if (lastGetMapUpdateIndex != gridMap.getUpdateIndex())
   {
@@ -93,12 +94,12 @@ void HectorMappingRos::getMap(std::vector<unsigned char>& map)
     int size = sizeX * sizeY;
 
     map.resize(size);
-/*
+
     if (mapMutex)
     {
       mapMutex->lockMap();
     }
-*/
+
     for(int i=0; i < size; ++i)
     {
       if(gridMap.isFree(i))
@@ -125,11 +126,10 @@ void HectorMappingRos::getMap(std::vector<unsigned char>& map)
 
     lastGetMapUpdateIndex = gridMap.getUpdateIndex();
 
-/*
     if (mapMutex)
     {
       mapMutex->unlockMap();
     }
-*/
+
   }
 }

@@ -40,12 +40,15 @@ public:
                 scoped_lock lock(mutex);
                 if(full == BUF_SIZE)
                 {
+                    /*
                         {
                                 scoped_lock lock(io_mutex);
-                                std::cout << "Buffer is full. Waiting..." << std::endl;
+                                std::cout << "Buffer is full. Clean it..." << std::endl;
                         }
-                        while(full == BUF_SIZE)
-                        cond.wait(lock);
+                        */
+                        p = 0;
+                        c = 0;
+                        full = 0;
                 }
                 buf[p] = data;
                 p = (p + 1) % BUF_SIZE;
@@ -59,8 +62,10 @@ public:
                 if(full == 0)
                 {
                          {
-                                scoped_lock lock(io_mutex);
-                                std::cout << "Buffer is empty. Waiting..." << std::endl;
+                                //scoped_lock lock(io_mutex);
+                                //std::cout << "Buffer is empty. Waiting..." << std::endl;
+
+                                
                         }
                         while(full == 0)
                         cond.wait(lk);
@@ -68,7 +73,6 @@ public:
                 hokuyoaist::ScanData result = buf[c];
                 c = (c + 1) % BUF_SIZE;
                 full--;
-                cond.notify_one();
                 return result;
         }
 private:
@@ -195,8 +199,11 @@ void laserDataReader()//雷达数据处理进程(hector slam)
 
 	while(1)
 	{
+
 		
 		hokuyoaist::ScanData data = buf.get();
+
+                            std::cout << data.as_string() << std::endl;
 
 		hector_slam.scanCallback(data);
 	}
