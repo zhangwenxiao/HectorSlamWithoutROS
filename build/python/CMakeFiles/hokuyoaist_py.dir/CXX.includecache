@@ -46,7 +46,7 @@ cstring
 string
 -
 
-/home/zwx/mycode/hokuyoaist/python/hokuyo_aist.cpp
+/home/zwx/mycode/slam_using_offical_code/python/hokuyo_aist.cpp
 hokuyoaist.h
 -
 boost/python.hpp

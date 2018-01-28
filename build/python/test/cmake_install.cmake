@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist/python/test
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code/python/test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

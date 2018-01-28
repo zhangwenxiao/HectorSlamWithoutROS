@@ -43,10 +43,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zwx/mycode/hokuyoaist
+CMAKE_SOURCE_DIR = /home/zwx/mycode/slam_using_offical_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zwx/mycode/hokuyoaist/build
+CMAKE_BINARY_DIR = /home/zwx/mycode/slam_using_offical_code/build
 
 # Utility rule file for uninstall.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/zwx/mycode/hokuyoaist/build
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/usr/local/bin/cmake -P /home/zwx/mycode/hokuyoaist/build/uninstall_target.cmake
+	/usr/local/bin/cmake -P /home/zwx/mycode/slam_using_offical_code/build/uninstall_target.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zwx/mycode/hokuyoaist /home/zwx/mycode/hokuyoaist /home/zwx/mycode/hokuyoaist/build /home/zwx/mycode/hokuyoaist/build /home/zwx/mycode/hokuyoaist/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zwx/mycode/slam_using_offical_code /home/zwx/mycode/slam_using_offical_code /home/zwx/mycode/slam_using_offical_code/build /home/zwx/mycode/slam_using_offical_code/build /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

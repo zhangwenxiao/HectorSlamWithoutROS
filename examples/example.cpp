@@ -10,8 +10,13 @@
 #include <boost/thread/thread.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/condition.hpp>
+#include <hokuyoaist/HectorMappingRos.h>
 
 hokuyoaist::Sensor laser; // Laser scanner object
+HectorMappingRos hector_slam; //hector slam object
+IplImage* LaserImage;
+IplImage* LaserImage2;
+
 
 std::string port_options("type=serial,device=/dev/ttyACM0,timeout=1");
 double start_angle(0.0), end_angle(0.0);
@@ -20,10 +25,8 @@ int multiecho_mode(0);
 unsigned int speed(0), cluster_count(1);
 bool get_intensities(false), get_new(false), verbose(false);
 
-IplImage* LaserImage;
-
 typedef boost::mutex::scoped_lock scoped_lock;
-const int BUF_SIZE = 100;
+const int BUF_SIZE = 5;
 
 boost::mutex io_mutex;
 
@@ -77,7 +80,7 @@ private:
 
 buffer buf;
 
-void laserDataWriter()
+void laserDataWriter()//读雷达数据的线程
 {
         while(1)
         {
@@ -144,51 +147,59 @@ void laserDataWriter()
         }
 }
 
-void laserDataReader()
+void mapReader()//显示地图的线程
 {
         LaserImage = cvCreateImage(cvSize(1024, 1024), IPL_DEPTH_8U, 1);//new opencv image used for show laser points
         cvNamedWindow("Laser", 1);
+/*
+        LaserImage2 = cvCreateImage(cvSize(1024, 1024), IPL_DEPTH_8U, 1);//new opencv image used for show laser points
+        cvNamedWindow("Laser2", 1);
+*/
+        std::vector<unsigned char> map;
+        unsigned char * pPixel = NULL;
+        size_t size = 0;
+        int x, y;
+        int robotindex;
 
         while(1)
         {
-                hokuyoaist::ScanData data = buf.get();
+                hector_slam.getMap(map);
 
-                std::cout << "reader: date get" << std::endl;
+                size = map.size();
 
-                cvZero(LaserImage);
-
-                cvShowImage("Laser", LaserImage);
-                std::cout << "debug_high" << std::endl;
-                cvWaitKey(2);
-   
-                std::cout << "Measured data:\n";
-                std::cout << data.as_string();
-
-                const int halfWidth = 512, halfHeight = 512;
-                unsigned char* pPixel = NULL;
-                int x, y;
-                double theta, rho;
-                size_t size = data.ranges_length();
-                cvCircle(LaserImage, cvPoint(halfWidth, halfHeight), 5, 255, -1, 8, 0);
-
-                for(int i = 0; i < size; i++)
+                for(size_t i = 0; i < size; i++)
                 {
-                        theta = -2.35619 + 0.00436332 * i;
-                        rho = *(data.ranges() + i);
-                        if(rho <= 20)
-                                continue;
-                        x = (int)(rho * cos(theta) / 10) + halfWidth;
-                        y = (int)(rho * sin(theta) / 10) + halfHeight;
-                        if(x >= 0 && x < 1024 && y>=0 && y< 1024)
-                        {
-                                pPixel = (unsigned char*)LaserImage -> imageData + y * LaserImage -> widthStep + x;
-                                *pPixel = 255;
-                        }
+                    x = i % 1024;
+                    y = i / 1024;
+                    pPixel = (unsigned char*)LaserImage -> imageData + y * LaserImage -> widthStep + x;
+                    if(map[i] != 100)
+                        *pPixel = map[i];
+                    else
+                    {
+                        robotindex = i;
+                    }        
                 }
 
+                cvCircle(LaserImage, cvPoint(robotindex % 1024, robotindex / 1024), 5, 255, -1, 8, 0);
+
+ //               cvCircle(LaserImage2, cvPoint(512, 512), 5, 255, -1, 8, 0);
                 cvShowImage("Laser", LaserImage);
                 cvWaitKey(2);
-        }       
+ //               cvShowImage("Laser2", LaserImage2);
+   //             cvWaitKey(2);
+        }
+}
+
+void laserDataReader()//雷达数据处理进程(hector slam)
+{
+
+	while(1)
+	{
+		
+		hokuyoaist::ScanData data = buf.get();
+
+		hector_slam.scanCallback(data);
+	}
 }
 
 int main(int argc, char **argv)
@@ -323,10 +334,12 @@ int main(int argc, char **argv)
         std::cout << info.as_string();
         //add
 
-        boost::thread thrd1(&laserDataWriter);
-        boost::thread thrd2(&laserDataReader);
+        boost::thread thrd1(&laserDataWriter);//雷达数据获取
+        boost::thread thrd2(&laserDataReader);//hector_slam
+        boost::thread thrd3(&mapReader);//opencv显示地图
         thrd1.join();
         thrd2.join();
+        thrd3.join();
 
         // Close the laser
         laser.close();

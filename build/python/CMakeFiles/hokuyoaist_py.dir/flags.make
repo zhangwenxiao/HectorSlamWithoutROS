@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC
 
 CXX_DEFINES = -Dhokuyoaist_py_EXPORTS
 
-CXX_INCLUDES = -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/include/hokuyoaist -I/usr/include/python3.4m 
+CXX_INCLUDES = -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/include/hokuyoaist -I/usr/include/python3.4m 
 

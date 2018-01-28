@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zwx/mycode/hokuyoaist
+CMAKE_SOURCE_DIR = /home/zwx/mycode/slam_using_offical_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zwx/mycode/hokuyoaist/build
+CMAKE_BINARY_DIR = /home/zwx/mycode/slam_using_offical_code/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -127,7 +127,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/zwx/mycode/hokuyoaist/build && /usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/hokuyoaist/build/CPackSourceConfig.cmake
+	cd /home/zwx/mycode/slam_using_offical_code/build && /usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/slam_using_offical_code/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -138,7 +138,7 @@ package_source/fast: package_source
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/zwx/mycode/hokuyoaist/build && /usr/local/bin/cpack --config ./CPackConfig.cmake
+	cd /home/zwx/mycode/slam_using_offical_code/build && /usr/local/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -148,14 +148,14 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles /home/zwx/mycode/hokuyoaist/build/src/CMakeFiles/progress.marks
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles 0
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles /home/zwx/mycode/slam_using_offical_code/build/src/CMakeFiles/progress.marks
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -165,22 +165,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/hokuyoaist.dir/rule:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/hokuyoaist.dir/rule
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/hokuyoaist.dir/rule
 .PHONY : src/CMakeFiles/hokuyoaist.dir/rule
 
 # Convenience name for target.
@@ -190,8 +190,35 @@ hokuyoaist: src/CMakeFiles/hokuyoaist.dir/rule
 
 # fast build rule for target.
 hokuyoaist/fast:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/build
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/build
 .PHONY : hokuyoaist/fast
+
+HectorMappingRos.o: HectorMappingRos.cpp.o
+
+.PHONY : HectorMappingRos.o
+
+# target to build an object file
+HectorMappingRos.cpp.o:
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/HectorMappingRos.cpp.o
+.PHONY : HectorMappingRos.cpp.o
+
+HectorMappingRos.i: HectorMappingRos.cpp.i
+
+.PHONY : HectorMappingRos.i
+
+# target to preprocess a source file
+HectorMappingRos.cpp.i:
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/HectorMappingRos.cpp.i
+.PHONY : HectorMappingRos.cpp.i
+
+HectorMappingRos.s: HectorMappingRos.cpp.s
+
+.PHONY : HectorMappingRos.s
+
+# target to generate assembly for a file
+HectorMappingRos.cpp.s:
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/HectorMappingRos.cpp.s
+.PHONY : HectorMappingRos.cpp.s
 
 hokuyo_errors.o: hokuyo_errors.cpp.o
 
@@ -199,7 +226,7 @@ hokuyo_errors.o: hokuyo_errors.cpp.o
 
 # target to build an object file
 hokuyo_errors.cpp.o:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.o
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.o
 .PHONY : hokuyo_errors.cpp.o
 
 hokuyo_errors.i: hokuyo_errors.cpp.i
@@ -208,7 +235,7 @@ hokuyo_errors.i: hokuyo_errors.cpp.i
 
 # target to preprocess a source file
 hokuyo_errors.cpp.i:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.i
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.i
 .PHONY : hokuyo_errors.cpp.i
 
 hokuyo_errors.s: hokuyo_errors.cpp.s
@@ -217,7 +244,7 @@ hokuyo_errors.s: hokuyo_errors.cpp.s
 
 # target to generate assembly for a file
 hokuyo_errors.cpp.s:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.s
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.s
 .PHONY : hokuyo_errors.cpp.s
 
 scan_data.o: scan_data.cpp.o
@@ -226,7 +253,7 @@ scan_data.o: scan_data.cpp.o
 
 # target to build an object file
 scan_data.cpp.o:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/scan_data.cpp.o
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/scan_data.cpp.o
 .PHONY : scan_data.cpp.o
 
 scan_data.i: scan_data.cpp.i
@@ -235,7 +262,7 @@ scan_data.i: scan_data.cpp.i
 
 # target to preprocess a source file
 scan_data.cpp.i:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/scan_data.cpp.i
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/scan_data.cpp.i
 .PHONY : scan_data.cpp.i
 
 scan_data.s: scan_data.cpp.s
@@ -244,7 +271,7 @@ scan_data.s: scan_data.cpp.s
 
 # target to generate assembly for a file
 scan_data.cpp.s:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/scan_data.cpp.s
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/scan_data.cpp.s
 .PHONY : scan_data.cpp.s
 
 sensor.o: sensor.cpp.o
@@ -253,7 +280,7 @@ sensor.o: sensor.cpp.o
 
 # target to build an object file
 sensor.cpp.o:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor.cpp.o
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor.cpp.o
 .PHONY : sensor.cpp.o
 
 sensor.i: sensor.cpp.i
@@ -262,7 +289,7 @@ sensor.i: sensor.cpp.i
 
 # target to preprocess a source file
 sensor.cpp.i:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor.cpp.i
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor.cpp.i
 .PHONY : sensor.cpp.i
 
 sensor.s: sensor.cpp.s
@@ -271,7 +298,7 @@ sensor.s: sensor.cpp.s
 
 # target to generate assembly for a file
 sensor.cpp.s:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor.cpp.s
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor.cpp.s
 .PHONY : sensor.cpp.s
 
 sensor_info.o: sensor_info.cpp.o
@@ -280,7 +307,7 @@ sensor_info.o: sensor_info.cpp.o
 
 # target to build an object file
 sensor_info.cpp.o:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor_info.cpp.o
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor_info.cpp.o
 .PHONY : sensor_info.cpp.o
 
 sensor_info.i: sensor_info.cpp.i
@@ -289,7 +316,7 @@ sensor_info.i: sensor_info.cpp.i
 
 # target to preprocess a source file
 sensor_info.cpp.i:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor_info.cpp.i
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor_info.cpp.i
 .PHONY : sensor_info.cpp.i
 
 sensor_info.s: sensor_info.cpp.s
@@ -298,7 +325,7 @@ sensor_info.s: sensor_info.cpp.s
 
 # target to generate assembly for a file
 sensor_info.cpp.s:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor_info.cpp.s
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f src/CMakeFiles/hokuyoaist.dir/build.make src/CMakeFiles/hokuyoaist.dir/sensor_info.cpp.s
 .PHONY : sensor_info.cpp.s
 
 # Help Target
@@ -316,6 +343,9 @@ help:
 	@echo "... package_source"
 	@echo "... package"
 	@echo "... hokuyoaist"
+	@echo "... HectorMappingRos.o"
+	@echo "... HectorMappingRos.i"
+	@echo "... HectorMappingRos.s"
 	@echo "... hokuyo_errors.o"
 	@echo "... hokuyo_errors.i"
 	@echo "... hokuyo_errors.s"
@@ -339,6 +369,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

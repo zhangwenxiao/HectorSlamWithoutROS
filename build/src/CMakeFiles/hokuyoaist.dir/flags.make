@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC
 
 CXX_DEFINES = -Dhokuyoaist_EXPORTS
 
-CXX_INCLUDES = -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2 
+CXX_INCLUDES = -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2 
 

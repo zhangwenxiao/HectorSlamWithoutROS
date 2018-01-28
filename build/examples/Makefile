@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zwx/mycode/hokuyoaist
+CMAKE_SOURCE_DIR = /home/zwx/mycode/slam_using_offical_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zwx/mycode/hokuyoaist/build
+CMAKE_BINARY_DIR = /home/zwx/mycode/slam_using_offical_code/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -103,7 +103,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/zwx/mycode/hokuyoaist/build && /usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/hokuyoaist/build/CPackSourceConfig.cmake
+	cd /home/zwx/mycode/slam_using_offical_code/build && /usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/slam_using_offical_code/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -114,7 +114,7 @@ package_source/fast: package_source
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/zwx/mycode/hokuyoaist/build && /usr/local/bin/cpack --config ./CPackConfig.cmake
+	cd /home/zwx/mycode/slam_using_offical_code/build && /usr/local/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -148,14 +148,14 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles /home/zwx/mycode/hokuyoaist/build/examples/CMakeFiles/progress.marks
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles 0
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles /home/zwx/mycode/slam_using_offical_code/build/examples/CMakeFiles/progress.marks
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 examples/clean
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 examples/clean
 .PHONY : clean
 
 # The main clean target
@@ -165,37 +165,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-examples/CMakeFiles/hokuyoaist_getid.dir/rule:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/hokuyoaist_getid.dir/rule
-.PHONY : examples/CMakeFiles/hokuyoaist_getid.dir/rule
-
-# Convenience name for target.
-hokuyoaist_getid: examples/CMakeFiles/hokuyoaist_getid.dir/rule
-
-.PHONY : hokuyoaist_getid
-
-# fast build rule for target.
-hokuyoaist_getid/fast:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_getid.dir/build.make examples/CMakeFiles/hokuyoaist_getid.dir/build
-.PHONY : hokuyoaist_getid/fast
-
-# Convenience name for target.
 examples/CMakeFiles/hokuyoaist_example.dir/rule:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/hokuyoaist_example.dir/rule
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/hokuyoaist_example.dir/rule
 .PHONY : examples/CMakeFiles/hokuyoaist_example.dir/rule
 
 # Convenience name for target.
@@ -205,7 +190,7 @@ hokuyoaist_example: examples/CMakeFiles/hokuyoaist_example.dir/rule
 
 # fast build rule for target.
 hokuyoaist_example/fast:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/build
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/build
 .PHONY : hokuyoaist_example/fast
 
 example.o: example.cpp.o
@@ -214,7 +199,7 @@ example.o: example.cpp.o
 
 # target to build an object file
 example.cpp.o:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/example.cpp.o
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/example.cpp.o
 .PHONY : example.cpp.o
 
 example.i: example.cpp.i
@@ -223,7 +208,7 @@ example.i: example.cpp.i
 
 # target to preprocess a source file
 example.cpp.i:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/example.cpp.i
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/example.cpp.i
 .PHONY : example.cpp.i
 
 example.s: example.cpp.s
@@ -232,35 +217,8 @@ example.s: example.cpp.s
 
 # target to generate assembly for a file
 example.cpp.s:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/example.cpp.s
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_example.dir/build.make examples/CMakeFiles/hokuyoaist_example.dir/example.cpp.s
 .PHONY : example.cpp.s
-
-getid.o: getid.cpp.o
-
-.PHONY : getid.o
-
-# target to build an object file
-getid.cpp.o:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_getid.dir/build.make examples/CMakeFiles/hokuyoaist_getid.dir/getid.cpp.o
-.PHONY : getid.cpp.o
-
-getid.i: getid.cpp.i
-
-.PHONY : getid.i
-
-# target to preprocess a source file
-getid.cpp.i:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_getid.dir/build.make examples/CMakeFiles/hokuyoaist_getid.dir/getid.cpp.i
-.PHONY : getid.cpp.i
-
-getid.s: getid.cpp.s
-
-.PHONY : getid.s
-
-# target to generate assembly for a file
-getid.cpp.s:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f examples/CMakeFiles/hokuyoaist_getid.dir/build.make examples/CMakeFiles/hokuyoaist_getid.dir/getid.cpp.s
-.PHONY : getid.cpp.s
 
 # Help Target
 help:
@@ -274,16 +232,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... package_source"
 	@echo "... package"
-	@echo "... hokuyoaist_getid"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... hokuyoaist_example"
 	@echo "... example.o"
 	@echo "... example.i"
 	@echo "... example.s"
-	@echo "... getid.o"
-	@echo "... getid.i"
-	@echo "... getid.s"
 .PHONY : help
 
 
@@ -295,6 +249,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

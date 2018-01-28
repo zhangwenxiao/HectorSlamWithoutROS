@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist/python
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code/python
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,12 +39,12 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMP
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages/hokuyoaist.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages" TYPE MODULE FILES "/home/zwx/mycode/hokuyoaist/build/python/hokuyoaist.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages" TYPE MODULE FILES "/home/zwx/mycode/slam_using_offical_code/build/python/hokuyoaist.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages/hokuyoaist.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages/hokuyoaist.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages/hokuyoaist.so"
-         OLD_RPATH "/home/zwx/mycode/hokuyoaist/build/src:/usr/local/lib:"
+         OLD_RPATH "/home/zwx/mycode/slam_using_offical_code/build/src:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/python3.4/site-packages/hokuyoaist.so")
@@ -54,7 +54,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/zwx/mycode/hokuyoaist/build/python/test/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/python/test/cmake_install.cmake")
 
 endif()
 

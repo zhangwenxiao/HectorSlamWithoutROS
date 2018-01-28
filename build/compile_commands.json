@@ -1,37 +1,37 @@
 [
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/examples",
-  "command": "/usr/bin/c++   -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2    -o CMakeFiles/hokuyoaist_getid.dir/getid.cpp.o -c /home/zwx/mycode/hokuyoaist/examples/getid.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/examples/getid.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/examples",
+  "command": "/usr/bin/c++   -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2 -isystem /usr/local/include/opencv -isystem /usr/local/include    -o CMakeFiles/hokuyoaist_example.dir/example.cpp.o -c /home/zwx/mycode/slam_using_offical_code/examples/example.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/examples/example.cpp"
 },
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/examples",
-  "command": "/usr/bin/c++   -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2 -isystem /usr/local/include/opencv -isystem /usr/local/include    -o CMakeFiles/hokuyoaist_example.dir/example.cpp.o -c /home/zwx/mycode/hokuyoaist/examples/example.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/examples/example.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/src",
+  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.o -c /home/zwx/mycode/slam_using_offical_code/src/hokuyo_errors.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/src/hokuyo_errors.cpp"
 },
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/src",
-  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/hokuyo_errors.cpp.o -c /home/zwx/mycode/hokuyoaist/src/hokuyo_errors.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/src/hokuyo_errors.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/src",
+  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/scan_data.cpp.o -c /home/zwx/mycode/slam_using_offical_code/src/scan_data.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/src/scan_data.cpp"
 },
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/src",
-  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/scan_data.cpp.o -c /home/zwx/mycode/hokuyoaist/src/scan_data.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/src/scan_data.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/src",
+  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/sensor.cpp.o -c /home/zwx/mycode/slam_using_offical_code/src/sensor.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/src/sensor.cpp"
 },
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/src",
-  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/sensor.cpp.o -c /home/zwx/mycode/hokuyoaist/src/sensor.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/src/sensor.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/src",
+  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/sensor_info.cpp.o -c /home/zwx/mycode/slam_using_offical_code/src/sensor_info.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/src/sensor_info.cpp"
 },
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/src",
-  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/sensor_info.cpp.o -c /home/zwx/mycode/hokuyoaist/src/sensor_info.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/src/sensor_info.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/src",
+  "command": "/usr/bin/c++  -Dhokuyoaist_EXPORTS -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/build/include -I/usr/local/include/flexiport-2  -fPIC   -o CMakeFiles/hokuyoaist.dir/HectorMappingRos.cpp.o -c /home/zwx/mycode/slam_using_offical_code/src/HectorMappingRos.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/src/HectorMappingRos.cpp"
 },
 {
-  "directory": "/home/zwx/mycode/hokuyoaist/build/python",
-  "command": "/usr/bin/c++  -Dhokuyoaist_py_EXPORTS -I/home/zwx/mycode/hokuyoaist/include -I/home/zwx/mycode/hokuyoaist/include/hokuyoaist -I/usr/include/python3.4m  -fPIC   -o CMakeFiles/hokuyoaist_py.dir/hokuyo_aist.cpp.o -c /home/zwx/mycode/hokuyoaist/python/hokuyo_aist.cpp",
-  "file": "/home/zwx/mycode/hokuyoaist/python/hokuyo_aist.cpp"
+  "directory": "/home/zwx/mycode/slam_using_offical_code/build/python",
+  "command": "/usr/bin/c++  -Dhokuyoaist_py_EXPORTS -I/home/zwx/mycode/slam_using_offical_code/include -I/home/zwx/mycode/slam_using_offical_code/include/hokuyoaist -I/usr/include/python3.4m  -fPIC   -o CMakeFiles/hokuyoaist_py.dir/hokuyo_aist.cpp.o -c /home/zwx/mycode/slam_using_offical_code/python/hokuyo_aist.cpp",
+  "file": "/home/zwx/mycode/slam_using_offical_code/python/hokuyo_aist.cpp"
 }
 ]

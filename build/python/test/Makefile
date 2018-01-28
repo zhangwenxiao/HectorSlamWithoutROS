@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zwx/mycode/hokuyoaist
+CMAKE_SOURCE_DIR = /home/zwx/mycode/slam_using_offical_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zwx/mycode/hokuyoaist/build
+CMAKE_BINARY_DIR = /home/zwx/mycode/slam_using_offical_code/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -127,7 +127,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/zwx/mycode/hokuyoaist/build && /usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/hokuyoaist/build/CPackSourceConfig.cmake
+	cd /home/zwx/mycode/slam_using_offical_code/build && /usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/slam_using_offical_code/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -138,7 +138,7 @@ package_source/fast: package_source
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/zwx/mycode/hokuyoaist/build && /usr/local/bin/cpack --config ./CPackConfig.cmake
+	cd /home/zwx/mycode/slam_using_offical_code/build && /usr/local/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -148,14 +148,14 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles /home/zwx/mycode/hokuyoaist/build/python/test/CMakeFiles/progress.marks
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles 0
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles /home/zwx/mycode/slam_using_offical_code/build/python/test/CMakeFiles/progress.marks
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/clean
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/clean
 .PHONY : clean
 
 # The main clean target
@@ -165,17 +165,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/preinstall
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/zwx/mycode/hokuyoaist/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/preinstall
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(MAKE) -f CMakeFiles/Makefile2 python/test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -203,6 +203,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/zwx/mycode/hokuyoaist/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/zwx/mycode/slam_using_offical_code/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

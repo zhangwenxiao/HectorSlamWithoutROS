@@ -2,6 +2,7 @@ set(srcs hokuyo_errors.cpp
     scan_data.cpp
     sensor.cpp
     sensor_info.cpp
+	HectorMappingRos.cpp
     )
 
 include_directories(${PROJECT_SOURCE_DIR}/include)

@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist/include
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code/include
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/zwx/mycode/hokuyoaist/build/include/hokuyoaist/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/include/hokuyoaist/cmake_install.cmake")
 
 endif()
 

@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/hokuyoaist.dir/scan_data.cpp.o"
   "CMakeFiles/hokuyoaist.dir/sensor.cpp.o"
   "CMakeFiles/hokuyoaist.dir/sensor_info.cpp.o"
+  "CMakeFiles/hokuyoaist.dir/HectorMappingRos.cpp.o"
   "libhokuyoaist.pdb"
   "libhokuyoaist.so.3.0.2"
   "libhokuyoaist.so"

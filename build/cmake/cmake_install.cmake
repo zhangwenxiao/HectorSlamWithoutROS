@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist/cmake
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code/cmake
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,13 +33,13 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "library" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/zwx/mycode/hokuyoaist/build/cmake/hokuyoaist.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/zwx/mycode/slam_using_offical_code/build/cmake/hokuyoaist.pc")
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "library" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hokuyoaist-3" TYPE FILE FILES
-    "/home/zwx/mycode/hokuyoaist/build/cmake/hokuyoaist-config.cmake"
-    "/home/zwx/mycode/hokuyoaist/build/cmake/hokuyoaist-config-version.cmake"
+    "/home/zwx/mycode/slam_using_offical_code/build/cmake/hokuyoaist-config.cmake"
+    "/home/zwx/mycode/slam_using_offical_code/build/cmake/hokuyoaist-config-version.cmake"
     )
 endif()
 

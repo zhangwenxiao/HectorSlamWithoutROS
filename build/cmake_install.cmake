@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,11 +34,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/zwx/mycode/hokuyoaist/build/cmake/cmake_install.cmake")
-  include("/home/zwx/mycode/hokuyoaist/build/examples/cmake_install.cmake")
-  include("/home/zwx/mycode/hokuyoaist/build/include/cmake_install.cmake")
-  include("/home/zwx/mycode/hokuyoaist/build/src/cmake_install.cmake")
-  include("/home/zwx/mycode/hokuyoaist/build/python/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/cmake/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/examples/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/include/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/src/cmake_install.cmake")
+  include("/home/zwx/mycode/slam_using_offical_code/build/python/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zwx/mycode/hokuyoaist/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zwx/mycode/slam_using_offical_code/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

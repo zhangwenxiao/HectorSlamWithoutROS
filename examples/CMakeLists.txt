@@ -19,21 +19,12 @@ install(TARGETS ${PROJECT_NAME_LOWER}_example
     RUNTIME DESTINATION bin
     COMPONENT examples)
 
-# Get laser ID sample
-add_executable(${PROJECT_NAME_LOWER}_getid getid.cpp)
-target_link_libraries(${PROJECT_NAME_LOWER}_getid
-    ${PROJECT_NAME_LOWER})
-install(TARGETS ${PROJECT_NAME_LOWER}_getid
-    DESTINATION ${BIN_INSTALL_DIR}
-    RUNTIME DESTINATION bin
-    COMPONENT examples)
-
 # Install example sources
 install(FILES CMakeLists.txt.example
     DESTINATION ${SHARE_INSTALL_DIR}/examples
     RENAME CMakeLists.txt
     COMPONENT examples)
-install(FILES example.cpp getid.cpp
+install(FILES example.cpp 
     example_urg_04lx.logr example_urg_04lx.logw
     example_utm_30lx.logr example_utm_30lx.logw
     example_uxm_30lx_e.logr example_uxm_30lx_e.logw
@@ -47,6 +38,5 @@ install(FILES example.readme
 
 # For packaging
 set(EXAMPLE_EXECUTABLES ${PROJECT_NAME_LOWER}_example HokuyoAIST_Example
-    ${PROJECT_NAME_LOWER}_getid GetID
     PARENT_SCOPE)
 

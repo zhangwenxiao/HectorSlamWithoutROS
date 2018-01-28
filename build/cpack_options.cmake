@@ -6,7 +6,7 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Hokuyo range sensor driver.")
 set(CPACK_PACKAGE_VENDOR "Geoffrey Biggs, AIST")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "HokuyoAIST")
 set(CPACK_PACKAGE_FILE_NAME "HokuyoAIST-3.0.2")
-set(CPACK_RESOURCE_FILE_LICENSE "/home/zwx/mycode/hokuyoaist/COPYING.LESSER")
+set(CPACK_RESOURCE_FILE_LICENSE "/home/zwx/mycode/slam_using_offical_code/COPYING.LESSER")
 
 set(CPACK_COMPONENTS_ALL library)
 set(CPACK_COMPONENT_LIBRARY_DISPLAY_NAME "HokuyoAIST library")
@@ -33,7 +33,7 @@ IF (WIN32)
     set(CPACK_NSIS_HELP_LINK "https://github.com/gbiggs/hokuyoaist")
     set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/gbiggs/hokuyoaist")
     set(CPACK_NSIS_MODIFY_PATH ON)
-    set(CPACK_PACKAGE_EXECUTABLES hokuyoaist_example;HokuyoAIST_Example;hokuyoaist_getid;GetID)
+    set(CPACK_PACKAGE_EXECUTABLES hokuyoaist_example;HokuyoAIST_Example)
     if(INSTALL_DOCUMENTATION)
         set(CPACK_NSIS_MENU_LINKS
             "/usr/local/share/doc/hokuyoaist-3/html/index.html"

@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zwx/mycode/hokuyoaist
+CMAKE_SOURCE_DIR = /home/zwx/mycode/slam_using_offical_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zwx/mycode/hokuyoaist/build
+CMAKE_BINARY_DIR = /home/zwx/mycode/slam_using_offical_code/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -127,7 +127,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/hokuyoaist/build/CPackSourceConfig.cmake
+	/usr/local/bin/cpack --config ./CPackSourceConfig.cmake /home/zwx/mycode/slam_using_offical_code/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -148,9 +148,9 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles /home/zwx/mycode/hokuyoaist/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/hokuyoaist/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -190,19 +190,6 @@ uninstall: cmake_check_build_system
 uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
-
-#=============================================================================
-# Target rules for targets named hokuyoaist_getid
-
-# Build rule for target.
-hokuyoaist_getid: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyoaist_getid
-.PHONY : hokuyoaist_getid
-
-# fast build rule for target.
-hokuyoaist_getid/fast:
-	$(MAKE) -f examples/CMakeFiles/hokuyoaist_getid.dir/build.make examples/CMakeFiles/hokuyoaist_getid.dir/build
-.PHONY : hokuyoaist_getid/fast
 
 #=============================================================================
 # Target rules for targets named hokuyoaist_example
@@ -258,7 +245,6 @@ help:
 	@echo "... package_source"
 	@echo "... package"
 	@echo "... uninstall"
-	@echo "... hokuyoaist_getid"
 	@echo "... hokuyoaist_example"
 	@echo "... hokuyoaist"
 	@echo "... hokuyoaist_py"

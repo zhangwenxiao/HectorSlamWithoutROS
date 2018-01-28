@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist/examples
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,12 +39,12 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "examples" OR NOT CMAKE_INSTALL_COMPONE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_example"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/zwx/mycode/hokuyoaist/build/examples/hokuyoaist_example")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/zwx/mycode/slam_using_offical_code/build/examples/hokuyoaist_example")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_example" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_example")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_example"
-         OLD_RPATH "/home/zwx/mycode/hokuyoaist/build/src:/usr/local/lib:"
+         OLD_RPATH "/home/zwx/mycode/slam_using_offical_code/build/src:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_example")
@@ -53,44 +53,23 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "examples" OR NOT CMAKE_INSTALL_COMPONE
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "examples" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid")
-    file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid"
-         RPATH "")
-  endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/zwx/mycode/hokuyoaist/build/examples/hokuyoaist_getid")
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid")
-    file(RPATH_CHANGE
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid"
-         OLD_RPATH "/home/zwx/mycode/hokuyoaist/build/src:/usr/local/lib:"
-         NEW_RPATH "")
-    if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/hokuyoaist_getid")
-    endif()
-  endif()
-endif()
-
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "examples" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hokuyoaist-3/examples" TYPE FILE RENAME "CMakeLists.txt" FILES "/home/zwx/mycode/hokuyoaist/examples/CMakeLists.txt.example")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hokuyoaist-3/examples" TYPE FILE RENAME "CMakeLists.txt" FILES "/home/zwx/mycode/slam_using_offical_code/examples/CMakeLists.txt.example")
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "examples" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hokuyoaist-3/examples" TYPE FILE FILES
-    "/home/zwx/mycode/hokuyoaist/examples/example.cpp"
-    "/home/zwx/mycode/hokuyoaist/examples/getid.cpp"
-    "/home/zwx/mycode/hokuyoaist/examples/example_urg_04lx.logr"
-    "/home/zwx/mycode/hokuyoaist/examples/example_urg_04lx.logw"
-    "/home/zwx/mycode/hokuyoaist/examples/example_utm_30lx.logr"
-    "/home/zwx/mycode/hokuyoaist/examples/example_utm_30lx.logw"
-    "/home/zwx/mycode/hokuyoaist/examples/example_uxm_30lx_e.logr"
-    "/home/zwx/mycode/hokuyoaist/examples/example_uxm_30lx_e.logw"
-    "/home/zwx/mycode/hokuyoaist/examples/96-hokuyo.rules"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example.cpp"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example_urg_04lx.logr"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example_urg_04lx.logw"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example_utm_30lx.logr"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example_utm_30lx.logw"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example_uxm_30lx_e.logr"
+    "/home/zwx/mycode/slam_using_offical_code/examples/example_uxm_30lx_e.logw"
+    "/home/zwx/mycode/slam_using_offical_code/examples/96-hokuyo.rules"
     )
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "examples" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hokuyoaist-3/examples" TYPE FILE RENAME "README.txt" FILES "/home/zwx/mycode/hokuyoaist/examples/example.readme")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hokuyoaist-3/examples" TYPE FILE RENAME "README.txt" FILES "/home/zwx/mycode/slam_using_offical_code/examples/example.readme")
 endif()
 

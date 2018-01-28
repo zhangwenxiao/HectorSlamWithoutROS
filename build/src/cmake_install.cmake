@@ -1,4 +1,4 @@
-# Install script for directory: /home/zwx/mycode/hokuyoaist/src
+# Install script for directory: /home/zwx/mycode/slam_using_offical_code/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -46,9 +46,9 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "library" OR NOT CMAKE_INSTALL_COMPONEN
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/zwx/mycode/hokuyoaist/build/src/libhokuyoaist.so.3.0.2"
-    "/home/zwx/mycode/hokuyoaist/build/src/libhokuyoaist.so.3"
-    "/home/zwx/mycode/hokuyoaist/build/src/libhokuyoaist.so"
+    "/home/zwx/mycode/slam_using_offical_code/build/src/libhokuyoaist.so.3.0.2"
+    "/home/zwx/mycode/slam_using_offical_code/build/src/libhokuyoaist.so.3"
+    "/home/zwx/mycode/slam_using_offical_code/build/src/libhokuyoaist.so"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhokuyoaist.so.3.0.2"
@@ -72,7 +72,7 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMP
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist/hokuyoaistDepends.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist/hokuyoaistDepends.cmake"
-         "/home/zwx/mycode/hokuyoaist/build/src/CMakeFiles/Export/lib/hokuyoaist/hokuyoaistDepends.cmake")
+         "/home/zwx/mycode/slam_using_offical_code/build/src/CMakeFiles/Export/lib/hokuyoaist/hokuyoaistDepends.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist/hokuyoaistDepends-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -81,9 +81,9 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMP
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist" TYPE FILE FILES "/home/zwx/mycode/hokuyoaist/build/src/CMakeFiles/Export/lib/hokuyoaist/hokuyoaistDepends.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist" TYPE FILE FILES "/home/zwx/mycode/slam_using_offical_code/build/src/CMakeFiles/Export/lib/hokuyoaist/hokuyoaistDepends.cmake")
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist" TYPE FILE FILES "/home/zwx/mycode/hokuyoaist/build/src/CMakeFiles/Export/lib/hokuyoaist/hokuyoaistDepends-noconfig.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/hokuyoaist" TYPE FILE FILES "/home/zwx/mycode/slam_using_offical_code/build/src/CMakeFiles/Export/lib/hokuyoaist/hokuyoaistDepends-noconfig.cmake")
   endif()
 endif()
 
