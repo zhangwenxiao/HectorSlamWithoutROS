@@ -59,6 +59,12 @@ hokuyoaist/hokuyoaist.h
 -
 fstream
 -
+boost/numeric/ublas/matrix.hpp
+../include/hokuyoaist/boost/numeric/ublas/matrix.hpp
+boost/thread/mutex.hpp
+../include/hokuyoaist/boost/thread/mutex.hpp
+Eigen/Core
+-
 
 ../include/hokuyoaist/HectorSlamProcessor.h
 hokuyoaist/GridMap.h

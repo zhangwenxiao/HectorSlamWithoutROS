@@ -146,7 +146,16 @@ void laserDataWriter()//读雷达数据的线程
                                 cluster_count);
                     }
                 }
-
+//mm -> m
+/*
+                unsigned int size = data.ranges_length();
+                for(int i = 0; i < size; i++)
+                {
+                    unsigned int num = *(data.ranges() + i);
+                    num /= 1000;
+                    data.write_range(i, num);
+                }
+*/
                 buf.put(data);
         }
 }
@@ -194,18 +203,97 @@ void mapReader()//显示地图的线程
         }
 }
 
+void showLaserDataInPic(const hokuyoaist::ScanData& data)
+{
+                            cvZero(LaserImage2);
+                            cvShowImage("Laser2", LaserImage2);
+                            cvWaitKey(2);
+
+                            int x,y;
+                            double theta,rho;
+                            unsigned char * pPixel = 0;
+                            int halfWidth  = 512;
+                            int halfHeight = 512;
+                            theta = ANGLE_MIN_DATA;
+
+                            for (int i = 0; i < data.ranges_length();i++)
+                            {
+                                rho = *(data.ranges() + i);
+
+                                x = (int)rho*cos(theta) / 10 + 512;
+                                y = (int)-rho*sin(theta) /10 + 512;
+
+                                if (x >= 0 && x < 1024 && y >= 0 && y < 1024)
+                                {
+                                    pPixel = (unsigned char*)LaserImage2->imageData + y*LaserImage2->widthStep + x;
+                                    *pPixel = 255;
+                                }
+                                theta += ANGLE_STEP;
+                            }
+
+                            cvCircle(LaserImage2, cvPoint(512,512),3, 255, -1, 8,0);
+
+                            cvShowImage("Laser2",LaserImage2);
+                            cvWaitKey(2);
+}
+
+void showLaserDataInPic(const std::vector<float>& data)
+{
+                            cvZero(LaserImage2);
+                            cvShowImage("Laser2", LaserImage2);
+                            cvWaitKey(2);
+
+                            int x,y;
+                            double theta,rho;
+                            unsigned char * pPixel = 0;
+                            int halfWidth  = 512;
+                            int halfHeight = 512;
+                            theta = ANGLE_MIN_DATA;
+
+                            for (int i = 0; i < data.size();i++)
+                            {
+                                rho = data[i];
+
+                                x = (int)rho*cos(theta)  + 512;
+                                y = (int)-rho*sin(theta) + 512;
+
+                                if (x >= 0 && x < 1024 && y >= 0 && y < 1024)
+                                {
+                                    pPixel = (unsigned char*)LaserImage2->imageData + y*LaserImage2->widthStep + x;
+                                    *pPixel = 255;
+                                }
+                                theta += ANGLE_STEP;
+                            }
+
+                            cvCircle(LaserImage2, cvPoint(512,512),3, 255, -1, 8,0);
+
+                            cvShowImage("Laser2",LaserImage2);
+                            cvWaitKey(2);
+}
+
 void laserDataReader()//雷达数据处理进程(hector slam)
 {
+    LaserImage2 = cvCreateImage(cvSize(1024, 1024), IPL_DEPTH_8U, 1);//new opencv image used for show laser points
+    cvNamedWindow("Laser2", 1);
 
 	while(1)
 	{
 
-		
 		hokuyoaist::ScanData data = buf.get();
 
-                            std::cout << data.as_string() << std::endl;
 
-		hector_slam.scanCallback(data);
+                            //std::cout << data.as_string() << std::endl;
+//show raw data
+                            //showLaserDataInPic(data);                    
+
+//show raw data
+                            Eigen::Vector3f pose = Eigen::Vector3f::Zero();
+                            std::vector<float> dataContainer;
+		hector_slam.scanCallback(data, false, dataContainer);
+                            hector_slam.getPose(pose);
+                            std::cout << "pose: " << pose[0] << " , " << pose[1] << " , " << pose[2] << std::endl;
+
+                            showLaserDataInPic(dataContainer);                    
 	}
 }
 
@@ -343,10 +431,10 @@ int main(int argc, char **argv)
 
         boost::thread thrd1(&laserDataWriter);//雷达数据获取
         boost::thread thrd2(&laserDataReader);//hector_slam
-        boost::thread thrd3(&mapReader);//opencv显示地图
+        //boost::thread thrd3(&mapReader);//opencv显示地图
         thrd1.join();
         thrd2.join();
-        thrd3.join();
+        //thrd3.join();
 
         // Close the laser
         laser.close();

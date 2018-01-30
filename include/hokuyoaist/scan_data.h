@@ -145,6 +145,8 @@ class HOKUYOAIST_EXPORT ScanData
     /// @brief Force the data to clean up.
     void clean_up();
 
+     void write_range(unsigned int index, uint32_t value);
+
   protected:
     uint32_t* ranges_;
     uint32_t* intensities_;
@@ -158,7 +160,7 @@ class HOKUYOAIST_EXPORT ScanData
 
     void allocate_data(unsigned int length,
     bool include_intensities = false);
-    void write_range(unsigned int index, uint32_t value);
+   
     void write_intensity(unsigned int index, uint32_t value);
 }; // class ScanData
 
