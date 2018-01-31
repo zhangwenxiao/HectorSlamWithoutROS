@@ -44,8 +44,8 @@ class HectorMappingRos
 public:
   HectorMappingRos();
   ~HectorMappingRos();
-  void getPose(Eigen::Vector3f& poseMap);
-  void getMap(std::vector<unsigned char>& map);
+  void getPose(Eigen::Vector3f& poseUpdateMap, Eigen::Vector3f& poseUpdateWorld, Eigen::Vector3f& poseMatch);
+  void getMap(std::vector<unsigned char>& map, float& angle);
   void scanCallback(const hokuyoaist::ScanData& scan, bool usePointCloud, std::vector<float>& getData);
   bool rosLaserScanToDataContainer(const hokuyoaist::ScanData& scan, hectorslam::DataContainer& dataContainer, float scaleToMap);
   void laserToPointCloud(const hokuyoaist::ScanData& scan_in, PointCloud& cloud_out, double range_cutoff);

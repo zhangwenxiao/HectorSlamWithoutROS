@@ -77,6 +77,7 @@ public:
   }
   
   const Eigen::Vector3f& getLastScanMatchPose() const { return lastScanMatchPose; };
+  const Eigen::Vector3f& getLastMapUpdatePose() const {return lastMapUpdatePose;};
   const Eigen::Matrix3f& getLastScanMatchCovariance() const { return lastScanMatchCov; };
   float getScaleToMap() const { return mapRep->getScaleToMap(); };
   int getMapLevels() const { return mapRep->getMapLevels(); };

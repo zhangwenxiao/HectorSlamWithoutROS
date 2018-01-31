@@ -47,24 +47,38 @@ HectorMappingRos::~HectorMappingRos()
 
   data_log_file.close();
 }
-
+//modify this function
 void HectorMappingRos::laserToPointCloud(const hokuyoaist::ScanData& scan_in, PointCloud& cloud_out, double range_cutoff)
 {
+  size_t size = scan_in.ranges_length();
+
   int beginIndex = (ANGLE_MAX_DATA - ANGLE_MAX) / ANGLE_STEP;
 
-  int size = scan_in.ranges_length() - 2 * beginIndex;
+  boost::numeric::ublas::matrix<double> ranges(2, size - 2 * beginIndex);
 
-  boost::numeric::ublas::matrix<double> ranges(2, size);
+  //dataGet.clear();
+  //dataGet.resize(size - 2 * beginIndex);
+  //int indexForDataGet = 0;
 
-  for (unsigned int index = beginIndex; index < beginIndex + size; index++)
+  unsigned int indexForRanges = 0;
+  for (unsigned int index = beginIndex; index < size - beginIndex; index++)
   {
-    ranges(0,index) = (double) *(scan_in.ranges() + index);
-    ranges(1,index) = (double) *(scan_in.ranges() + index);
+
+    ranges(0,indexForRanges) = (double) *(scan_in.ranges() + index) / 1000.0;
+    ranges(1,indexForRanges) = (double) *(scan_in.ranges() + index) / 1000.0;
+
+    //dataGet[indexForDataGet++] = (double) *(scan_in.ranges() + index) / 1000.0 * slamProcessor->getScaleToMap();
+
+    indexForRanges++;
   }
 
-  boost::numeric::ublas::matrix<double> output = element_prod(ranges, getUnitVectors_(ANGLE_MIN, ANGLE_MAX, ANGLE_STEP, size));
+  //dataGet.resize(indexForDataGet);
 
-  cloud_out.points.resize (size);
+  boost::numeric::ublas::matrix<double> output = element_prod(ranges, 
+                                                                                                                getUnitVectors_(ANGLE_MIN, ANGLE_MAX, ANGLE_STEP, 
+                                                                                                                                            size - 2 * beginIndex));
+
+  cloud_out.points.resize (size - 2 * beginIndex);
 
   if (range_cutoff < 0)
     range_cutoff = RANGE_MAX;
@@ -72,7 +86,7 @@ void HectorMappingRos::laserToPointCloud(const hokuyoaist::ScanData& scan_in, Po
     range_cutoff = std::min(range_cutoff, (double)RANGE_MAX); 
 
   unsigned int count = 0;
-  for (unsigned int index = 0; index< size; index++)
+  for (unsigned int index = 0; index< size - 2 * beginIndex; index++)
   {
    if ((ranges(0,index) < range_cutoff) && (ranges(0,index) >= RANGE_MIN)) //if valid or preservative
    {
@@ -86,14 +100,15 @@ void HectorMappingRos::laserToPointCloud(const hokuyoaist::ScanData& scan_in, Po
   }
 
   cloud_out.points.resize (count);
-
 }
 
 void HectorMappingRos::scanCallback(const hokuyoaist::ScanData& scan, bool usePointCloud, std::vector<float>& getData)
 {
   if(!usePointCloud)
+  {
     if (rosLaserScanToDataContainer(scan, laserScanContainer,slamProcessor->getScaleToMap()))
       slamProcessor->update(laserScanContainer,slamProcessor->getLastScanMatchPose());
+  }
   else
   {
       PointCloud laser_point_cloud;
@@ -128,7 +143,7 @@ const boost::numeric::ublas::matrix<double>& HectorMappingRos::getUnitVectors_(d
     //and return
     return *tempPtr;
   };
-
+//modify this function
 bool HectorMappingRos::rosPointCloudToDataContainer(PointCloud& pointCloud, hectorslam::DataContainer& dataContainer, float scaleToMap)
 {
   size_t size = pointCloud.points.size();
@@ -138,12 +153,17 @@ bool HectorMappingRos::rosPointCloudToDataContainer(PointCloud& pointCloud, hect
   Eigen::Vector3f laserPos (Eigen::Vector3f::Zero());//雷达坐标系在机器人坐标系中的位置
   dataContainer.setOrigo(Eigen::Vector2f(laserPos.x(), laserPos.y())*scaleToMap);
 
+  dataGet.clear();
+  dataGet.resize(size);
+  int indexForDataGet = 0;
+
   for (size_t i = 0; i < size; ++i)
   {
 
     const Point& currPoint(pointCloud.points[i]);
 
     float dist_sqr = currPoint.x*currPoint.x + currPoint.y* currPoint.y;
+    
 
     if ( (dist_sqr > p_sqr_laser_min_dist_) && (dist_sqr < p_sqr_laser_max_dist_) ){
 
@@ -156,10 +176,12 @@ bool HectorMappingRos::rosPointCloudToDataContainer(PointCloud& pointCloud, hect
       if (pointPosLaserFrameZ > p_laser_z_min_value_ && pointPosLaserFrameZ < p_laser_z_max_value_)
       {
         dataContainer.add(Eigen::Vector2f(currPoint.x, currPoint.y) * scaleToMap);
+        dataGet[indexForDataGet++] = sqrt(dist_sqr) * scaleToMap;
       }
     }
   }
 
+  dataGet.resize(indexForDataGet);
   return true;
 }
 
@@ -201,7 +223,7 @@ bool HectorMappingRos::rosLaserScanToDataContainer(const hokuyoaist::ScanData& s
   return true;
 }
 
-void HectorMappingRos::getMap(std::vector<unsigned char>& map)
+void HectorMappingRos::getMap(std::vector<unsigned char>& map, float& angle)
 {
   const hectorslam::GridMap& gridMap = slamProcessor->getGridMap(0);
   MapLockerInterface* mapMutex = slamProcessor->getMapMutex(0);
@@ -239,8 +261,9 @@ void HectorMappingRos::getMap(std::vector<unsigned char>& map)
 
     int x = robotPose[0];
     int y = robotPose[1];
+    angle = robotPose[2];
 
-    int robotIndex = x * p_map_size_ + y;
+    int robotIndex = y * sizeX + x;
 
     if(robotIndex >= 0 && robotIndex < size)
       map[robotIndex] = 100;
@@ -256,7 +279,9 @@ void HectorMappingRos::getMap(std::vector<unsigned char>& map)
   }
 }
 
-void HectorMappingRos::getPose(Eigen::Vector3f& poseMap)
+void HectorMappingRos::getPose(Eigen::Vector3f& poseUpdateMap, Eigen::Vector3f& poseUpdateWorld, Eigen::Vector3f& poseMatch)
 {
-  slamProcessor-> getLastPoseMap(poseMap);
+  slamProcessor -> getLastPoseMap(poseUpdateMap);
+  poseUpdateWorld = slamProcessor -> getLastMapUpdatePose();
+  poseMatch = slamProcessor -> getLastScanMatchPose();
 }
