@@ -236,9 +236,9 @@ void mapReader()//显示地图的线程last modify
 
         while(1)
         {
-                cvZero(LaserImage);
-                cvShowImage("Laser", LaserImage);
-                cvWaitKey(2);
+                //cvZero(LaserImage);
+                //cvShowImage("Laser", LaserImage);
+                //cvWaitKey(2);
 
                 hector_slam.getMap(map, angle);
 
@@ -247,7 +247,7 @@ void mapReader()//显示地图的线程last modify
                 for(size_t i = 0; i < size; i++)
                 {
                     x = i % 1024;
-                    y = i / 1024;
+                    y = (1023 - i / 1024);
                     pPixel = (unsigned char*)LaserImage -> imageData + y * LaserImage -> widthStep + x;
                     if(map[i] != 100)
                         *pPixel = map[i];
@@ -258,10 +258,10 @@ void mapReader()//显示地图的线程last modify
                 }
 
                 int robotX = robotindex % 1024;
-                int robotY = robotindex / 1024;
+                int robotY = 1023 - robotindex / 1024;
                 cvCircle(LaserImage, cvPoint(robotX, robotY), 3, 255, -1, 8, 0);
-                cvLine(LaserImage, cvPoint(robotX, robotY), cvPoint(robotX + (int)(cos(angle) * 20), robotY + (int)(sin(angle) * 20)), 255);
-                cvLine(LaserImage, cvPoint(robotX, robotY), cvPoint(robotX + (int)(cos(angle + M_PI / 2) * 20), robotY + (int)(sin(angle + M_PI / 2) * 20)), 255);
+                cvLine(LaserImage, cvPoint(robotX, robotY), cvPoint(robotX + (int)(cos(-angle) * 20), robotY + (int)(sin(-angle) * 20)), 255);
+                //cvLine(LaserImage, cvPoint(robotX, robotY), cvPoint(robotX + (int)(cos(angle + M_PI / 2) * 20), robotY + (int)(sin(angle + M_PI / 2) * 20)), 255);
 
                 cvShowImage("Laser", LaserImage);
                 cvWaitKey(10);
@@ -292,9 +292,9 @@ void laserDataReader()//雷达数据处理进程(hector slam)
 		hector_slam.scanCallback(data, true, dataContainer);
                             hector_slam.getPose(poseMap, poseUpdate, poseMatch);
 
-                            std::cout << "poseMap: " << poseMap[0] << " , " << poseMap[1] << " , " << poseMap[2] << std::endl;
-                            std::cout << "poseUpdate: " << poseUpdate[0] << " , " << poseUpdate[1] << " , " << poseUpdate[2] << std::endl;
-                            std::cout << "poseMatch: " << poseMatch[0] << " , " << poseMatch[1] << " , " << poseMatch[2] << std::endl;
+                            //std::cout << "poseMap: " << poseMap[0] << " , " << poseMap[1] << " , " << poseMap[2] << std::endl;
+                            //std::cout << "poseUpdate: " << poseUpdate[0] << " , " << poseUpdate[1] << " , " << poseUpdate[2] << std::endl;
+                            //std::cout << "poseMatch: " << poseMatch[0] << " , " << poseMatch[1] << " , " << poseMatch[2] << std::endl;
 
                             //showLaserDataInPic(dataContainer);//last modify                    
 	}
