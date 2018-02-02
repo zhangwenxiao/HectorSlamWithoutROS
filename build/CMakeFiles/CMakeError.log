@@ -1,0 +1,153 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d5db6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d5db6.dir/build.make CMakeFiles/cmTC_d5db6.dir/build
+make[1]: 正在进入目录 `/home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d5db6.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_d5db6.dir/CheckSymbolExists.c.o   -c /home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_d5db6
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d5db6.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_d5db6.dir/CheckSymbolExists.c.o  -o cmTC_d5db6 
+CMakeFiles/cmTC_d5db6.dir/CheckSymbolExists.c.o：在函数‘main’中：
+CheckSymbolExists.c:(.text+0x16)：对‘pthread_create’未定义的引用
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_d5db6] 错误 1
+make[1]:正在离开目录 `/home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_d5db6/fast] 错误 2
+
+File /home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_79ddf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_79ddf.dir/build.make CMakeFiles/cmTC_79ddf.dir/build
+make[1]: 正在进入目录 `/home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_79ddf.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_79ddf.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_79ddf
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79ddf.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_79ddf.dir/CheckFunctionExists.c.o  -o cmTC_79ddf -lpthreads 
+/usr/bin/ld: 找不到 -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_79ddf] 错误 1
+make[1]:正在离开目录 `/home/zwx/mycode/hokuyoaist/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_79ddf/fast] 错误 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f5b68/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f5b68.dir/build.make CMakeFiles/cmTC_f5b68.dir/build
+make[1]: 正在进入目录 `/home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f5b68.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f5b68.dir/CheckSymbolExists.c.o   -c /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_f5b68
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5b68.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_f5b68.dir/CheckSymbolExists.c.o  -o cmTC_f5b68 
+CMakeFiles/cmTC_f5b68.dir/CheckSymbolExists.c.o：在函数‘main’中：
+CheckSymbolExists.c:(.text+0x16)：对‘pthread_create’未定义的引用
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_f5b68] 错误 1
+make[1]:正在离开目录 `/home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_f5b68/fast] 错误 2
+
+File /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_49ac7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_49ac7.dir/build.make CMakeFiles/cmTC_49ac7.dir/build
+make[1]: 正在进入目录 `/home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_49ac7.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_49ac7.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_49ac7
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49ac7.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_49ac7.dir/CheckFunctionExists.c.o  -o cmTC_49ac7 -lpthreads 
+/usr/bin/ld: 找不到 -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_49ac7] 错误 1
+make[1]:正在离开目录 `/home/zwx/mycode/slam_using_offical_code/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_49ac7/fast] 错误 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1275a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1275a.dir/build.make CMakeFiles/cmTC_1275a.dir/build
+make[1]: 正在进入目录 `/home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1275a.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_1275a.dir/CheckSymbolExists.c.o   -c /home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_1275a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1275a.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_1275a.dir/CheckSymbolExists.c.o  -o cmTC_1275a 
+CMakeFiles/cmTC_1275a.dir/CheckSymbolExists.c.o：在函数‘main’中：
+CheckSymbolExists.c:(.text+0x16)：对‘pthread_create’未定义的引用
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_1275a] 错误 1
+make[1]:正在离开目录 `/home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_1275a/fast] 错误 2
+
+File /home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_641cf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_641cf.dir/build.make CMakeFiles/cmTC_641cf.dir/build
+make[1]: 正在进入目录 `/home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_641cf.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_641cf.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_641cf
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_641cf.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_641cf.dir/CheckFunctionExists.c.o  -o cmTC_641cf -lpthreads 
+/usr/bin/ld: 找不到 -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_641cf] 错误 1
+make[1]:正在离开目录 `/home/zwx/mycode/lion_code/lion_slam/lion_slam/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_641cf/fast] 错误 2
+
+

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/hokuyoaist_getid.dir/getid.cpp.o  -o hokuyoaist_getid -Wl,-rpath,/home/zwx/mycode/slam_using_offical_code/build/src:/usr/local/lib: ../src/libhokuyoaist.so.3.0.2 /usr/local/lib/libflexiport.so -lrt 

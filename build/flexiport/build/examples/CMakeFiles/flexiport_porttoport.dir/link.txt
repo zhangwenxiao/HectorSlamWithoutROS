@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/flexiport_porttoport.dir/porttoport.cpp.o  -o flexiport_porttoport -Wl,-rpath,/home/zwx/mycode/hokuyoaist/build/flexiport/build/src: ../src/libflexiport.so.2.0.0 

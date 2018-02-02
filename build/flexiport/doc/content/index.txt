@@ -1,0 +1,186 @@
+.. Flexiport documentation master file, created by
+   sphinx-quickstart on Mon Aug  8 11:28:05 2011.
+
+Flexiport data communications library
+=====================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+Flexiport provides a consistent interface for communicating over a range of
+data port types. Currently serial (including serial-over-USB), TCP and UDP
+ports are supported. Logging is possible, which allows communications sessions
+to be played back at a later date without the original hardware present.
+
+The SerialPort, TCPPort and UDPPort port types are cross-platform, usable on
+Linux, Mac OS X and Microsoft Windows. If this library is compiled as static on
+Windows, you must define the FLEXIPORT_STATIC preprocessor variable when
+compiling code that includes port.h, flexiport.h or timeout.h.
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+
+Quick usage guide
+=================
+
+Header files
+------------
+
+Necessary:
+
+.. code-block:: cpp
+
+   #include <flexiport/flexiport.h>
+   #include <flexiport/port.h>
+
+Optional if port type-specific features are required:
+
+- SerialPort
+
+.. code-block:: cpp
+
+   #include <flexiport/serialport.h>
+
+- TCPPort
+
+.. code-block:: cpp
+
+   #include <flexiport/tcpport.h>
+
+- UDPPPort
+
+.. code-block:: cpp
+
+   #include <flexiport/tcpport.h>
+
+- Logging ports
+
+.. code-block:: cpp
+
+   #include <flexiport/logwriterport.h>
+   #include <flexiport/logreaderport.h>
+
+
+Examples
+========
+
+If BUILD_EXAMPLES is enabled when the library is compiled and installed,
+example sources are installed under "${prefix}/share/flexiport-2/examples".
+These can be used as a basis for creating your own software.
+
+Building
+--------
+
+The examples can be built by making a directory (anywhere on your system where
+you have write permissions will do), changing to that directory and executing
+CMake with the examples' source directory as an argument. For example, if you
+have installed Flexiport into /usr/local, you could do the following:
+
+.. code-block:: bash
+
+   $ cd ~
+   $ mkdir flexiport_example
+   $ cd flexiport_example
+   $ ccmake /usr/local/share/flexiport/example
+
+
+Running serial_example
+----------------------
+
+This example requires a serial loopback device. You can make one by connecting
+pins 2 and 3 of a 9-pin serial port. You must specify a path to this serial
+port with the -d option. You may additionally specify extra options for the
+flexiport object, such as a timeout. e.g.:
+
+.. code-block:: bash
+
+   serial_example -o type=serial,device=/dev/ttyS0,baud=57600,timeout=2.5,debug=2
+
+The example will test sending and receiving several strings to check that the
+SerialPort object is functioning correctly.
+
+This example also comes with a log file pair for use with the LogReaderPort
+port type. Using a log file pair means the hardware (in this case, the loopback
+device) does not need to be present to execute the example. You can use the
+log file pair like this:
+
+.. code-block:: bash
+
+   serial_example -o type=logreader,file=example.log
+
+See the LogReaderPort object documentation for more options that can be used
+with log file pairs. See the LogWriterPort object documentation for details
+on how to make your own log file pair for testing your programs.
+
+
+Running tcp_example
+-------------------
+
+The tcp_example is simple to use. Simply execute it, and it will fork off a
+child process, then use this to test a connection between two TCPPort objects.
+
+You may specify additional options for the TCPPort objects using -o, such as
+a timeout. e.g.:
+
+.. code-block:: bash
+
+   tcp_example -o timeout=1,debug=3
+
+
+Running udp_example
+-------------------
+
+The udp_example is similar to the tcp_example, replacing the TCPPort object
+with a UDPPort object.
+
+You may specify additional options for the UDPPort objects using -o, such as
+a timeout. e.g.:
+
+.. code-block:: bash
+
+   udp_example -o timeout=1,debug=3
+
+
+PortToPort
+----------
+
+PortToPort is a simple utility to forward data between two flexiport devices.
+It was mainly written with the idea of forwarding data from a local hardware
+serial or USB port to a TCP port, which is connected to another TCP port on a
+remote computer. If the TCP port on the remote computer is also a flexiport
+device, this allows for transparently changing between using a local hardware
+device and a remote hardware device in that program (in most cases).
+
+Options must be given for both the left and right ports. For example:
+
+.. code-block:: bash
+
+   porttoport -l type=serial,device=/dev/ttyACM0,timeout=0.1 -r type=tcp,listen,timeout=0.1
+
+Another TCP port can then connect to the right port (which is waiting for one
+to do so) and communicate with the hardware device connected to the serial
+port.
+
+Execute "porttoport -h" for a list of all available options.
+
+
+Note for Windows users
+----------------------
+
+Because Windows lacks a readily-available implementation of getopt, command line
+options are not available for the examples on this platform. Hard-coded options
+will be used instead; change them in the source file and recompile if you need
+to change the port options.
+
+License
+=======
+
+This software is developed at the National Institute of Advanced Industrial
+Science and Technology. Approval number H20PRO-881. This software is licensed
+under the Lesser General Public License. See COPYING.LESSER.
+

@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/flexiport_serial_example.dir/serial_example.cpp.o  -o flexiport_serial_example -Wl,-rpath,/home/zwx/mycode/hokuyoaist/build/flexiport/build/src: ../src/libflexiport.so.2.0.0 

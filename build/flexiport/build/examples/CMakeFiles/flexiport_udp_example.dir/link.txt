@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/flexiport_udp_example.dir/udp_example.cpp.o  -o flexiport_udp_example -Wl,-rpath,/home/zwx/mycode/hokuyoaist/build/flexiport/build/src: ../src/libflexiport.so.2.0.0 
