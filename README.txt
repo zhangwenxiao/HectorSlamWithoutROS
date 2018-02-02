@@ -12,3 +12,4 @@ cmake版本:3.9.6
 	./hokuyoaist_example
 运行程序
 
+雷达驱动安装参考博客:http://blog.sina.com.cn/s/blog_49d7a3c20102xtfu.html
