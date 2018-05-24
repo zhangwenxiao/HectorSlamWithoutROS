@@ -4,6 +4,8 @@
 Linux版本:ubuntu14.04
 cmake版本:3.9.6
 
+另外需要安装opencv3、boost和Eigen
+
 使用方法:
 创建build目录:
     mkdir build
