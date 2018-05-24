@@ -26,7 +26,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <hokuyoaist/hokuyo_errors.h>
+#include "hokuyo_errors.h"
 
 #include <cstdlib>
 #include <cstring>

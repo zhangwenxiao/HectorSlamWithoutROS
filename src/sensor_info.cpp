@@ -26,8 +26,8 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <hokuyoaist/sensor_info.h>
-#include <hokuyoaist/utils.h>
+#include "sensor_info.h"
+#include "utils.h"
 
 #include <sstream>
 #include <string>

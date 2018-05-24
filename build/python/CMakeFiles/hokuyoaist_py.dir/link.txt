@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC   -shared  -o hokuyoaist.so CMakeFiles/hokuyoaist_py.dir/hokuyo_aist.cpp.o -Wl,-rpath,/home/zwx/mycode/lion_code/lion_slam/lion_slam/build/src:/usr/local/lib: ../src/libhokuyoaist.so.3.0.2 /usr/lib/x86_64-linux-gnu/libboost_python-py34.so /usr/lib/x86_64-linux-gnu/libpython3.4m.so /usr/local/lib/libflexiport.so -lrt 

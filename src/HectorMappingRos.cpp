@@ -1,11 +1,11 @@
-#include <hokuyoaist/HectorMappingRos.h>
-#include <hokuyoaist/GridMap.h>
-#include <hokuyoaist/HectorMapMutex.h>
+#include "HectorMappingRos.h"
+#include "GridMap.h"
+#include "HectorMapMutex.h"
 #include <fstream>
 
 HectorMappingRos::HectorMappingRos(): lastGetMapUpdateIndex(-100)
 {
-  p_map_resolution_ = 0.025;
+  p_map_resolution_ = 0.025;//0.025
   p_map_size_ = 1024;
   p_map_start_x_ = 0.5; 
   p_map_start_y_ = 0.5;
@@ -246,13 +246,17 @@ void HectorMappingRos::getMap(std::vector<unsigned char>& map, float& angle)
 
     for(int i=0; i < size; ++i)
     {
-      if(gridMap.isFree(i))
+      if(!gridMap.isUpdated(i))
+      {
+        map[i] = 10;//not updated
+      }
+      else if(gridMap.isFree(i))
+      {
+        map[i] = 200;
+      }
+      else if(gridMap.isOccupied(i))
       {
         map[i] = 0;
-      }
-      else if (gridMap.isOccupied(i))
-      {
-        map[i] = 255;
       }
     }
 
@@ -266,7 +270,7 @@ void HectorMappingRos::getMap(std::vector<unsigned char>& map, float& angle)
     int robotIndex = y * sizeX + x;
 
     if(robotIndex >= 0 && robotIndex < size)
-      map[robotIndex] = 100;
+      map[robotIndex] = 100;//robot coordinate
 
 
     lastGetMapUpdateIndex = gridMap.getUpdateIndex();

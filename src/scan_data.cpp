@@ -26,9 +26,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <hokuyoaist/scan_data.h>
+#include "scan_data.h"
 
-#include <hokuyoaist/hokuyo_errors.h>
+#include "hokuyo_errors.h"
 
 #include <cstring>
 #include <sstream>

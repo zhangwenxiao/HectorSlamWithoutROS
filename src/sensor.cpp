@@ -26,14 +26,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <hokuyoaist/hokuyoaist.h>
-#include <hokuyoaist/hokuyo_errors.h>
-#include <hokuyoaist/sensor_info.h>
-#include <hokuyoaist/utils.h>
+#include "hokuyoaist.h"
+#include "hokuyo_errors.h"
+#include "sensor_info.h"
+#include "utils.h"
 
-#include <flexiport/flexiport.h>
-#include <flexiport/port.h>
-#include <flexiport/serialport.h>
+#include "flexiport.h"
+#include "port.h"
+#include "serialport.h"
 
 #include <cassert>
 #include <cstring>
